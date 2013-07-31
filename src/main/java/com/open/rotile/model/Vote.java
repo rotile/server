@@ -1,18 +1,24 @@
 package com.open.rotile.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.googlecode.objectify.annotation.Entity;
 
+@Entity
 public class Vote {
 
-	private List<Integer> votes = new ArrayList<Integer>();
-
-	public void vote(int vote) {
-		votes.add(vote);
+	private int vote;
+	
+	public Vote(int vote) {
+		this.vote = vote;
 	}
 
+	public int vote() {
+		return this.vote;
+	}
+	
 	@Override
 	public String toString() {
-		return votes.toString();
+		return String.valueOf(vote);
 	}
+	
+	
 }

@@ -11,7 +11,7 @@ public class VoteTest {
 	@Test
 	public void votes_should_all_appear_in_string_representation() {
 		// Given
-		Vote vote = new Vote();
+		Votes vote = new Votes();
 		List<Integer> voteValues = new ArrayList<Integer>();
 		voteValues.add(3);
 		voteValues.add(2);

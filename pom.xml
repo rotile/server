@@ -20,7 +20,13 @@
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.objectify</groupId>
+			<artifactId>objectify</artifactId>
+			<version>4.0b3</version>
+		</dependency>
 
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
