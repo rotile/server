@@ -7,7 +7,7 @@ public class Votes {
 
 	private List<Vote> votes = new ArrayList<Vote>();
 
-	public void vote(int vote) {
+	public void vote(Vote vote) {
 		votes.add(vote);
 	}
 
