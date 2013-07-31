@@ -7,8 +7,8 @@ public class Votes {
 
 	private List<Vote> votes = new ArrayList<Vote>();
 
-	public void vote(Vote vote) {
-		votes.add(vote);
+	public void vote(int vote) {
+		votes.add(new Vote(vote));
 	}
 
 	@Override

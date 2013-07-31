@@ -19,7 +19,7 @@ public class VoteTest {
 
 		// When
 		for (Integer value : voteValues) {
-			vote.vote(new Vote(value));
+			vote.vote(value);
 		}
 
 		// Then

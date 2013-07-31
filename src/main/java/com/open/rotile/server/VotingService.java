@@ -7,7 +7,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
-import com.open.rotile.model.Vote;
 import com.open.rotile.model.Votes;
 
 @Path("/vote")
@@ -24,6 +23,6 @@ public class VotingService {
 	@POST
 	@Path("/{vote}")
 	public void doVote(@PathParam("vote") int vote) {
-		this.vote.vote(new Vote(vote));
+		this.vote.vote(vote);
 	}
 }
