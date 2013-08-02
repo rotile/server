@@ -1,1 +1,37 @@
-Hello world
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Rotile</title>
+        <script src="scripts.js"></script>
+        <link rel=stylesheet type="text/css" href="style.css">
+    </head>
+    <body>  
+        <h1>Merci de voter</h1>
+         <div>
+             Utilisateur :<select id="userC">
+                        <option value="user1">Jojo</option>
+                        <option value="user2">Max</option>
+                        <option value="user3">Baptiste</option>
+                        </select><br>
+                 
+            Session :<select id="sessionC">
+                            <option value="session1">Mieux preparer vos retros</option>
+                            <option value="session2">Le PO dans tous ses etats</option>
+                            <option value="session3">Travailler en mode Agile</option>
+                        </select><br>
+                 
+            Note :  <select id="scoreC">
+                            <option value="score1">1</option>
+                            <option value="score2">2</option>
+                            <option value="score3">3</option>
+                            <option value="score4">4</option>
+                            <option value="score4">5</option>
+                        </select><br>
+             <button onclick="save();">Enregistrer</button>
+        </div>
+        <hr>
+        <h1>Liste des votes</h1>
+        <table id="usersSessionsScores">          
+        </table>
+    </body>
+</html>
