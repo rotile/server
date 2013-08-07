@@ -28,3 +28,7 @@ function save()
      document.getElementById('usersSessionsScores').innerHTML = sessionStorage.usersSessionsScores;
     
 }
+
+function vote() {
+	
+}
