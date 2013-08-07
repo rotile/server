@@ -5,11 +5,14 @@ function Ctrl($scope, $http) {
             method: "POST"
     });
     this.vote = '';
+    getVotes($scope, $http);
   };
+  
+  getVotes($scope, $http);
 }
 
 function getVotes($scope, $http) {
-  var promise = $http.get('/vote').success(function(data) {
-    $scope.votes = data;
-  });
+	$http.get('/vote').success(function(data) {
+    	$scope.votes = data;
+  	});
 }

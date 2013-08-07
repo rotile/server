@@ -6,17 +6,17 @@
 </head>
 
 <body>
-	<form name="voteForm" ng-submit="submit()" ng-controller="Ctrl">
-		Vote here (0-5): <input type="text" ng-model="vote" name="input"
-			placeholder="Vote here" required /> <input type="submit" id="submit"
-			value="Vote" />
-	</form>
-	
-	<div ng_controller="getVotes">
-		Liste des votes déjà enregistrés : <br/>
-		 <li ng-repeat="vote in votes">
-		 	{{vote}}
-		 </li>
+	<div ng-controller="Ctrl">
+		<form name="voteForm" ng-submit="submit()">
+			Vote here (0-5): <input type="text" ng-model="vote" name="input"
+				placeholder="Vote here" required /> <input type="submit"
+				id="submit" value="Vote" />
+		</form>
+
+		<div>
+			Liste des votes déjà enregistrés : <br />
+			<li ng-repeat="vote in votes">{{vote}}</li>
+		</div>
 	</div>
 </body>
 
