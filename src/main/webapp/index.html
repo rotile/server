@@ -1,37 +1,32 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>Rotile</title>
-        <script src="scripts.js"></script>
-        <link rel=stylesheet type="text/css" href="style.css">
-    </head>
-    <body>  
-        <h1>Merci de voter</h1>
-         <div>
-             Utilisateur :<select id="userC">
-                        <option value="user1">Jojo</option>
-                        <option value="user2">Max</option>
-                        <option value="user3">Baptiste</option>
-                        </select><br>
-                 
-            Session :<select id="sessionC">
-                            <option value="session1">Mieux preparer vos retros</option>
-                            <option value="session2">Le PO dans tous ses etats</option>
-                            <option value="session3">Travailler en mode Agile</option>
-                        </select><br>
-                 
-            Note :  <select id="scoreC">
-                            <option value="score1">1</option>
-                            <option value="score2">2</option>
-                            <option value="score3">3</option>
-                            <option value="score4">4</option>
-                            <option value="score4">5</option>
-                        </select><br>
-             <button onclick="save();">Enregistrer</button>
-        </div>
-        <hr>
-        <h1>Liste des votes</h1>
-        <table id="usersSessionsScores">          
-        </table>
-    </body>
+<html ng-app>
+
+<head>
+<script src="scripts/angular.min.js"></script>
+<script src="scripts/vote.js"></script>
+<link rel=stylesheet type="text/css" href="style.css">
+</head>
+
+<body>
+	<div class="topbar">Voting for your project</div>
+	<div class="container">
+		<div ng-controller="Ctrl">
+			<div class="vote-container">
+				<span class="vote-title">Vote for your project</span>
+				<form class="vote-form" name="voteForm" ng-submit="submit()">
+					<p>Vote for your project, give a value between 1 and 5</p>
+					Your vote: <input type="text" ng-model="vote" name="input"
+						placeholder="Vote here" required /> <input type="submit"
+						id="submit" value="Vote" />
+				</form>
+			</div>
+
+			<div class="vote-container vote-list">
+				<span class="vote-title">Votes already submitted</span>
+				<p>Votes that were already submitted for this project:</p>
+				<li ng-repeat="vote in votes">{{vote}}</li>
+			</div>
+		</div>
+	</div>
+</body>
+
 </html>
