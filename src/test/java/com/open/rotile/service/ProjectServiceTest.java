@@ -66,4 +66,22 @@ public class ProjectServiceTest {
 		Assertions.assertThat(project.average()).isEqualTo(vote);
 		Mockito.verify(projectPersistService).save(project);
 	}
+
+	@Test
+	public void findProject_return_project_if_exists() {
+		// Given
+		ProjectPersistService projectPersistService = Mockito
+				.mock(ProjectPersistService.class);
+		ProjectService service = new ProjectService(projectPersistService);
+		final String projectName = "my project";
+		Project expectedProject = new Project(projectName);
+		Mockito.when(projectPersistService.findProject(projectName))
+				.thenReturn(expectedProject);
+
+		// When
+		Project project = service.findProject(projectName);
+
+		// Then
+		Assertions.assertThat(project).isEqualTo(expectedProject);
+	}
 }

@@ -30,8 +30,8 @@ public class ProjectService {
 		projectPersistService.save(project);
 	}
 
-	public void findProject(String name) {
-
+	public Project findProject(String name) {
+		return projectPersistService.findProject(name);
 	}
 
 	public void findProjects(String name) {
