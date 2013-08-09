@@ -9,11 +9,12 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.open.rotile.model.Votes;
 import com.open.rotile.service.persist.IVotingService;
+import com.open.rotile.service.persist.VotingService;
 
 @Path("/vote")
-public class VotingService {
+public class VoteRestService {
 
-	IVotingService votingService = new com.open.rotile.service.persist.VotingService();
+	IVotingService votingService = new VotingService();
 
 	@GET
 	public Response showVote() {

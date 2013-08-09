@@ -11,7 +11,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<init-param>
 			<param-name>jaxrs.serviceClasses</param-name>
 			<param-value>
-			    com.open.rotile.server.VotingService,
+			    com.open.rotile.server.VoteRestService,
 			    com.open.rotile.server.ProjectRestService
 			</param-value>
 		</init-param>
