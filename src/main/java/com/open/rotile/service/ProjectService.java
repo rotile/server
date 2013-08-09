@@ -5,7 +5,7 @@ import java.util.List;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.ProjectPersistService;
 
-public class ProjectService {
+public class ProjectService implements IProjectService {
 
 	private ProjectPersistService projectPersistService;
 
