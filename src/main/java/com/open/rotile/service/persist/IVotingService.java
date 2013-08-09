@@ -1,4 +1,4 @@
-package com.open.rotile.service;
+package com.open.rotile.service.persist;
 
 import com.open.rotile.model.Votes;
 

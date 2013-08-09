@@ -1,4 +1,4 @@
-package com.open.rotile.service;
+package com.open.rotile.service.persist;
 
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;

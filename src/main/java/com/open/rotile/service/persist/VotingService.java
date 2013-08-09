@@ -1,6 +1,6 @@
-package com.open.rotile.service;
+package com.open.rotile.service.persist;
 
-import static com.open.rotile.service.OfyService.ofy;
+import static com.open.rotile.service.persist.OfyService.ofy;
 
 import com.open.rotile.model.Vote;
 import com.open.rotile.model.Votes;
