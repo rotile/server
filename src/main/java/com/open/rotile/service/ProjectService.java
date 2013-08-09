@@ -1,5 +1,7 @@
 package com.open.rotile.service;
 
+import java.util.List;
+
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.ProjectPersistService;
 
@@ -34,11 +36,7 @@ public class ProjectService {
 		return projectPersistService.findProject(name);
 	}
 
-	public void findProjects(String name) {
-
-	}
-
-	public void listProjects() {
-
+	public List<Project> listProjects() {
+		return projectPersistService.listProjects();
 	}
 }

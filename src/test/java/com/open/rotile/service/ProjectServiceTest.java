@@ -1,5 +1,8 @@
 package com.open.rotile.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -83,5 +86,25 @@ public class ProjectServiceTest {
 
 		// Then
 		Assertions.assertThat(project).isEqualTo(expectedProject);
+	}
+
+	@Test
+	public void listProjects_return_all_projects_like() {
+		// Given
+		ProjectPersistService projectPersistService = Mockito
+				.mock(ProjectPersistService.class);
+		ProjectService service = new ProjectService(projectPersistService);
+		List<Project> allProjects = new ArrayList<Project>();
+		allProjects.add(new Project("my project"));
+		allProjects.add(new Project("my project 2"));
+
+		Mockito.when(projectPersistService.listProjects()).thenReturn(
+				allProjects);
+
+		// When
+		List<Project> projects = service.listProjects();
+
+		// Then
+		Assertions.assertThat(projects).isEqualTo(allProjects);
 	}
 }
