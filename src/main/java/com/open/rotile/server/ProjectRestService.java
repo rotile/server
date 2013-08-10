@@ -16,10 +16,11 @@ import com.open.rotile.service.IProjectService;
 @Path("/projects")
 public class ProjectRestService {
 
-	@Inject
 	private IProjectService projectService;
 
-	public ProjectRestService() {
+	@Inject
+	public ProjectRestService(IProjectService projectService) {
+		this.projectService = projectService;
 	}
 
 	@GET
