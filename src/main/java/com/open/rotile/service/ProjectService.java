@@ -3,6 +3,7 @@ package com.open.rotile.service;
 import java.util.List;
 
 import com.google.inject.Inject;
+import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.IProjectPersistService;
 
@@ -21,10 +22,14 @@ public class ProjectService implements IProjectService {
 		return projectPersistService.createProject(project);
 	}
 
-	// TODO: transaction
 	@Override
-	public void vote(String projectName, int vote) {
+	public void vote(String projectName, int vote)
+			throws ProjectDoesNotExistException {
+		// Not made transactionnal on purpose
 		Project project = projectPersistService.findProject(projectName);
+		if (project == null) {
+			throw new ProjectDoesNotExistException(projectName);
+		}
 		project.vote(vote);
 		projectPersistService.save(project);
 	}

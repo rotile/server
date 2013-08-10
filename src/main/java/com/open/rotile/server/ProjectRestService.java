@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.google.inject.Inject;
+import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.IProjectService;
 
@@ -32,8 +33,13 @@ public class ProjectRestService {
 
 	@POST
 	@Path("/{projectName}/{vote}")
-	public void vote(@PathParam("projectName") String projectName,
+	public Response vote(@PathParam("projectName") String projectName,
 			@PathParam("vote") int vote) {
-		projectService.vote(projectName, vote);
+		try {
+			projectService.vote(projectName, vote);
+			return Response.ok().build();
+		} catch (ProjectDoesNotExistException e) {
+			return Response.serverError().build();
+		}
 	}
 }

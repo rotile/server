@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
+import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.ProjectPersistService;
 
@@ -35,7 +36,8 @@ public class ProjectServiceTest {
 	}
 
 	@Test
-	public void vote_add_new_vote_to_project_if_project_exist() {
+	public void vote_add_new_vote_to_project_if_project_exist()
+			throws ProjectDoesNotExistException {
 		// Given
 		ProjectPersistService projectPersistService = Mockito
 				.mock(ProjectPersistService.class);
@@ -54,6 +56,26 @@ public class ProjectServiceTest {
 		Assertions.assertThat(project.nbVotes()).isEqualTo(1);
 		Assertions.assertThat(project.average()).isEqualTo(vote);
 		Mockito.verify(projectPersistService).save(project);
+	}
+
+	@Test(expected = ProjectDoesNotExistException.class)
+	public void vote_throws_exception_if_project_does_not_exist()
+			throws ProjectDoesNotExistException {
+		// Given
+		ProjectPersistService projectPersistService = Mockito
+				.mock(ProjectPersistService.class);
+		ProjectService service = new ProjectService(projectPersistService);
+		final int vote = 4;
+		final String projectName = "my project";
+
+		Mockito.when(projectPersistService.findProject(projectName))
+				.thenReturn(null);
+
+		// When
+		service.vote(projectName, vote);
+
+		// Then
+		// See @Test
 	}
 
 	@Test
