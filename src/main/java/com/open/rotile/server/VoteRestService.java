@@ -7,18 +7,23 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
+import com.google.inject.Inject;
 import com.open.rotile.model.Votes;
-import com.open.rotile.service.persist.IVotingService;
-import com.open.rotile.service.persist.VotingService;
+import com.open.rotile.service.IVoteService;
 
 @Path("/vote")
 public class VoteRestService {
 
-	IVotingService votingService = new VotingService();
+	private IVoteService voteService;
+
+	@Inject
+	public VoteRestService(IVoteService voteService) {
+		this.voteService = voteService;
+	}
 
 	@GET
 	public Response showVote() {
-		Votes votes = votingService.retrieveVotes();
+		Votes votes = voteService.retrieveVotes();
 		ResponseBuilder response = Response.ok(votes.toString());
 		return response.build();
 	}
@@ -26,6 +31,6 @@ public class VoteRestService {
 	@POST
 	@Path("/{vote}")
 	public void doVote(@PathParam("vote") int vote) {
-		votingService.vote(vote);
+		voteService.vote(vote);
 	}
 }
