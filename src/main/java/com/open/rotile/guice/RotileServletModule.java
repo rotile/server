@@ -15,9 +15,8 @@ public class RotileServletModule extends ServletModule {
 
 	@Override
 	protected void configureServlets() {
-		// Bind services
-		ResourceConfig rc = new PackagesResourceConfig(
-				"com.open.rotile.server", "com.open.rotile.service");
+		// Bind REST services
+		ResourceConfig rc = new PackagesResourceConfig("com.open.rotile.server");
 		for (Class<?> resource : rc.getClasses()) {
 			bind(resource);
 		}

@@ -14,11 +14,10 @@ public class BusinessModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		// TODO Auto-generated method stub
+		// Bind all business services
 		bind(IProjectService.class).to(ProjectService.class);
 		bind(IVoteService.class).to(VoteService.class);
 		bind(IVotePersistService.class).to(VotePersistService.class);
 		bind(IProjectPersistService.class).to(ProjectPersistService.class);
 	}
-
 }
