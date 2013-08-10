@@ -16,6 +16,6 @@ public class RotileGuiceServletContextListener extends
 
 	@Override
 	protected Injector getInjector() {
-		return Guice.createInjector(new RotileServletModule());
+		return Guice.createInjector(new RotileServletModule(), new BusinessModule());
 	}
 }

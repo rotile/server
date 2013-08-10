@@ -2,6 +2,7 @@ package com.open.rotile.service;
 
 import java.util.List;
 
+import com.google.inject.Inject;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.ProjectPersistService;
 
@@ -9,6 +10,7 @@ public class ProjectService implements IProjectService {
 
 	private ProjectPersistService projectPersistService;
 
+	@Inject
 	public ProjectService(ProjectPersistService projectPersistService) {
 		this.projectPersistService = projectPersistService;
 	}
