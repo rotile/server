@@ -5,22 +5,20 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
-	<servlet>
-		<servlet-name>Rotile</servlet-name>
-		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
-		<init-param>
-			<param-name>jaxrs.serviceClasses</param-name>
-			<param-value>
-			    com.open.rotile.server.VoteRestService,
-			    com.open.rotile.server.ProjectRestService
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Rotile</servlet-name>
+	<filter>
+		<filter-name>guiceFilter</filter-name>
+		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>guiceFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</servlet-mapping>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>com.open.rotile.guice.RotileGuiceServletContextListener</listener-class>
+	</listener>
+
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

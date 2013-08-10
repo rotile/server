@@ -12,6 +12,7 @@
 
 	<properties>
 		<cxf.version>2.7.6</cxf.version>
+		<google.guice.version>4.0-beta</google.guice.version>
 	</properties>
 
 	<dependencies>
@@ -25,8 +26,25 @@
 			<artifactId>objectify</artifactId>
 			<version>4.0b3</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>${google.guice.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-servlet</artifactId>
+			<version>${google.guice.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
 
 
+		<!-- Tests -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -62,7 +80,7 @@
 			<plugin>
 				<groupId>com.google.appengine</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.8.2</version>
+				<version>1.8.3</version>
 			</plugin>
 
 			<plugin>
