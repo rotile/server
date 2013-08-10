@@ -5,7 +5,7 @@ import static com.open.rotile.service.persist.OfyService.ofy;
 import com.open.rotile.model.Vote;
 import com.open.rotile.model.Votes;
 
-public class VotingService implements IVotingService {
+public class VotePersistService implements IVotePersistService {
 
 	public void vote(int vote) {
 		Vote voteEntity = new Vote(vote);
