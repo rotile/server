@@ -15,17 +15,10 @@ public class ProjectService implements IProjectService {
 		this.projectPersistService = projectPersistService;
 	}
 
-	// TODO: transaction
 	@Override
 	public boolean createProject(String name) {
-		// cannot create the project if it already exists
-		if (projectPersistService.projectExists(name)) {
-			return false;
-		}
-
 		Project project = new Project(name);
-		projectPersistService.save(project);
-		return true;
+		return projectPersistService.createProject(project);
 	}
 
 	// TODO: transaction

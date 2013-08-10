@@ -5,6 +5,7 @@ import static com.open.rotile.service.persist.OfyService.ofy;
 import java.util.List;
 
 import com.open.rotile.model.Project;
+import com.open.rotile.service.persist.transaction.CreateProjectTransaction;
 
 public class ProjectPersistService implements IProjectPersistService {
 
@@ -16,6 +17,13 @@ public class ProjectPersistService implements IProjectPersistService {
 	@Override
 	public boolean projectExists(String projectName) {
 		return findProject(projectName) != null;
+	}
+
+	@Override
+	public boolean createProject(final Project project) {
+		boolean projectCreated = ofy().transact(
+				new CreateProjectTransaction(this, project));
+		return projectCreated;
 	}
 
 	@Override

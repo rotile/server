@@ -10,7 +10,10 @@ public interface IProjectPersistService {
 
 	public boolean projectExists(String projectName);
 
+	boolean createProject(Project project);
+
 	public Project findProject(String projectName);
 
 	public List<Project> listProjects();
+
 }

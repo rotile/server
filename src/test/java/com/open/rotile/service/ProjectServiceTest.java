@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import com.open.rotile.model.Project;
@@ -13,7 +14,7 @@ import com.open.rotile.service.persist.ProjectPersistService;
 public class ProjectServiceTest {
 
 	@Test
-	public void createProject_persist_project_and_return_true() {
+	public void createProject_create_new_project() {
 		// Given
 		ProjectPersistService projectPersistService = Mockito
 				.mock(ProjectPersistService.class);
@@ -21,31 +22,16 @@ public class ProjectServiceTest {
 		final String projectName = "my project";
 
 		// When
-		boolean created = service.createProject(projectName);
-
-		// Then
-		Assertions.assertThat(created).isTrue();
-		Mockito.verify(projectPersistService).save(Mockito.any(Project.class));
-	}
-
-	@Test
-	public void createProject_does_nothing_and_return_false_if_project_already_exist() {
-		// Given
-		ProjectPersistService projectPersistService = Mockito
-				.mock(ProjectPersistService.class);
-		ProjectService service = new ProjectService(projectPersistService);
-		final String projectName = "my project";
-
-		Mockito.when(projectPersistService.projectExists(projectName))
+		ArgumentCaptor<Project> argCaptor = ArgumentCaptor
+				.forClass(Project.class);
+		Mockito.when(projectPersistService.createProject(argCaptor.capture()))
 				.thenReturn(true);
-
-		// When
-		boolean created = service.createProject(projectName);
+		service.createProject(projectName);
 
 		// Then
-		Assertions.assertThat(created).isFalse();
-		Mockito.verify(projectPersistService).projectExists(projectName);
-		Mockito.verifyNoMoreInteractions(projectPersistService);
+		Assertions.assertThat(argCaptor.getValue()).isNotNull();
+		Assertions.assertThat(argCaptor.getValue().name()).isEqualTo(
+				projectName);
 	}
 
 	@Test
