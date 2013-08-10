@@ -1,7 +1,7 @@
 function Ctrl($scope, $http) {
   $scope.submit = function() {
     $http({
-            url: '/vote/' + this.vote,
+            url: '/services/vote/' + this.vote,
             method: "POST"
     });
     this.vote = '';
@@ -12,7 +12,7 @@ function Ctrl($scope, $http) {
 }
 
 function getVotes($scope, $http) {
-	$http.get('/vote').success(function(data) {
+	$http.get('/services/vote').success(function(data) {
     	$scope.votes = data;
   	});
 }

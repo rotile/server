@@ -21,6 +21,6 @@ public class RotileServletModule extends ServletModule {
 			bind(resource);
 		}
 
-		serve("/*").with(GuiceContainer.class);
+		serve("/services/*").with(GuiceContainer.class);
 	}
 }
