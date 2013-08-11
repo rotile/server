@@ -58,26 +58,22 @@ public class ProjectServiceTest {
 	}
 
 	@Test
-	public void vote_add_new_vote_to_project_if_project_exist()
-			throws ProjectDoesNotExistException {
+	public void vote_vote_for_project() throws ProjectDoesNotExistException {
 		// Given
 		ProjectPersistService projectPersistService = Mockito
 				.mock(ProjectPersistService.class);
 		ProjectService service = new ProjectService(projectPersistService);
-		final String projectName = "my project";
 		final int vote = 3;
+		final String projectName = "my project";
 
-		Project project = new Project(projectName);
-		Mockito.when(projectPersistService.findProject(projectName))
-				.thenReturn(project);
+		Mockito.when(projectPersistService.voteForProject(projectName, vote))
+				.thenReturn(true);
 
 		// When
 		service.vote(projectName, vote);
 
 		// Then
-		Assertions.assertThat(project.nbVotes()).isEqualTo(1);
-		Assertions.assertThat(project.average()).isEqualTo(vote);
-		Mockito.verify(projectPersistService).save(project);
+		Mockito.verify(projectPersistService).voteForProject(projectName, vote);
 	}
 
 	@Test(expected = ProjectDoesNotExistException.class)
@@ -87,11 +83,11 @@ public class ProjectServiceTest {
 		ProjectPersistService projectPersistService = Mockito
 				.mock(ProjectPersistService.class);
 		ProjectService service = new ProjectService(projectPersistService);
-		final int vote = 4;
+		final int vote = 3;
 		final String projectName = "my project";
 
-		Mockito.when(projectPersistService.findProject(projectName))
-				.thenReturn(null);
+		Mockito.when(projectPersistService.voteForProject(projectName, vote))
+				.thenReturn(false);
 
 		// When
 		service.vote(projectName, vote);

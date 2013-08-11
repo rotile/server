@@ -12,6 +12,8 @@ public interface IProjectPersistService {
 
 	boolean createProject(Project project);
 
+	boolean voteForProject(final String projectName, final int vote);
+
 	public Project findProject(String projectName);
 
 	public List<Project> listProjects();

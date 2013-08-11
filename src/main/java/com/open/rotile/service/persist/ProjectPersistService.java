@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.transaction.CreateProjectTransaction;
+import com.open.rotile.service.persist.transaction.VoteForProjectTransaction;
 
 public class ProjectPersistService implements IProjectPersistService {
 
@@ -24,6 +25,12 @@ public class ProjectPersistService implements IProjectPersistService {
 		boolean projectCreated = ofy().transact(
 				new CreateProjectTransaction(this, project));
 		return projectCreated;
+	}
+
+	@Override
+	public boolean voteForProject(final String projectName, final int vote) {
+		return ofy().transact(
+				new VoteForProjectTransaction(this, projectName, vote));
 	}
 
 	@Override

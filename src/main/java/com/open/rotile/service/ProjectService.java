@@ -29,13 +29,10 @@ public class ProjectService implements IProjectService {
 	@Override
 	public void vote(String projectName, int vote)
 			throws ProjectDoesNotExistException {
-		// Not made transactionnal on purpose
-		Project project = projectPersistService.findProject(projectName);
-		if (project == null) {
+		boolean voted = projectPersistService.voteForProject(projectName, vote);
+		if (voted == false) {
 			throw new ProjectDoesNotExistException(projectName);
 		}
-		project.vote(vote);
-		projectPersistService.save(project);
 	}
 
 	@Override
