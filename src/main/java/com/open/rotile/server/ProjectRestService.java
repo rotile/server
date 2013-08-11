@@ -44,6 +44,14 @@ public class ProjectRestService {
 		return response.build();
 	}
 
+	@GET
+	@Path("/{projectName}")
+	public Response getProject(@PathParam("projectName") String projectName) {
+		Project project = projectService.findProject(projectName);
+		ResponseBuilder response = Response.ok(project.toString());
+		return response.build();
+	}
+
 	@POST
 	@Path("/{projectName}/{vote}")
 	public Response vote(@PathParam("projectName") String projectName,

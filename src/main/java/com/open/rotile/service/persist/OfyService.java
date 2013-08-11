@@ -4,11 +4,9 @@ import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
 import com.open.rotile.model.Project;
-import com.open.rotile.model.Vote;
 
 public class OfyService {
 	static {
-		factory().register(Vote.class);
 		factory().register(Project.class);
 	}
 

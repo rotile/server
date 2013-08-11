@@ -35,10 +35,8 @@ public class ProjectPersistService implements IProjectPersistService {
 
 	@Override
 	public Project findProject(String projectName) {
-		// Key<Project> key = Key.create(Project.class, projectName);
-		Project project = ofy().load().type(Project.class).id(projectName)
-				.now();
-		return project;
+		return ofy().transactionless().load().type(Project.class)
+				.id(projectName).now();
 	}
 
 	@Override
