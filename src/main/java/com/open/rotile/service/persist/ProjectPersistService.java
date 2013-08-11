@@ -11,7 +11,7 @@ public class ProjectPersistService implements IProjectPersistService {
 
 	@Override
 	public void save(Project project) {
-		ofy().save().entity(project);
+		ofy().save().entity(project).now();
 	}
 
 	@Override
@@ -28,8 +28,9 @@ public class ProjectPersistService implements IProjectPersistService {
 
 	@Override
 	public Project findProject(String projectName) {
-		Project project = ofy().load().type(Project.class)
-				.filterKey("name", projectName).first().now();
+		// Key<Project> key = Key.create(Project.class, projectName);
+		Project project = ofy().load().type(Project.class).id(projectName)
+				.now();
 		return project;
 	}
 

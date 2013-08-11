@@ -1,0 +1,32 @@
+<html ng-app>
+
+<head>
+<script src="scripts/angular.min.js"></script>
+<script src="scripts/projects.js"></script>
+<link rel=stylesheet type="text/css" href="style.css">
+</head>
+
+<body>
+	<div class="topbar">Projects</div>
+	<div class="container">
+		<div ng-controller="Ctrl">
+			<div class="vote-container">
+				<span class="vote-title">Create a new project</span>
+				<form class="vote-form" name="voteForm" ng-submit="submit()">
+					<p>Enter the name of your project</p>
+					Your project: <input type="text" ng-model="name" name="input"
+						placeholder="You project name" required /> <input type="submit"
+						id="submit" value="Create" />
+				</form>
+			</div>
+
+			<div class="vote-container vote-list">
+				<span class="vote-title">List of existing projects</span>
+				<p>List of projects already created:</p>
+				<li ng-repeat="project in projects">{{project}}</li>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

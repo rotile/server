@@ -42,7 +42,7 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return votes.toString();
+		return name + " - " + votes.toString();
 	}
 
 }

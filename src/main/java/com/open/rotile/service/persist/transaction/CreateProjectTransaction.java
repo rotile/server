@@ -25,5 +25,4 @@ public class CreateProjectTransaction implements Work<Boolean> {
 		projectPersistService.save(project);
 		return true;
 	}
-
 }
