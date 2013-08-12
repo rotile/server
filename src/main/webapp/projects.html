@@ -24,7 +24,7 @@
 				<span class="vote-title">List of existing projects</span>
 				<p>List of projects already created:</p>
 				<ul>
-					<li ng-repeat="project in projects">{{project.name}}</li>
+					<li ng-repeat="project in projects"><a href="/project.html?projectId={{project.name}}">{{project.name}}</a></li>
 				</ul>
 			</div>
 		</div>
