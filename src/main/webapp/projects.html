@@ -23,7 +23,9 @@
 			<div class="vote-container vote-list">
 				<span class="vote-title">List of existing projects</span>
 				<p>List of projects already created:</p>
-				<li ng-repeat="project in projects">{{project}}</li>
+				<ul>
+					<li ng-repeat="project in projects">{{project.name}}</li>
+				</ul>
 			</div>
 		</div>
 	</div>

@@ -13,6 +13,6 @@ function Ctrl($scope, $http) {
 
 function getProjects($scope, $http) {
 	$http.get('/services/projects').success(function(data) {
-		$scope.projects = data;
+		$scope.projects = angular.fromJson(data);
 	});
 }
