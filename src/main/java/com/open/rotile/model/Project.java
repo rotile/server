@@ -33,6 +33,10 @@ public class Project {
 
 	public int average() {
 		int average = 0;
+		if (votes.isEmpty()) {
+			return average;
+		}
+
 		for (Vote vote : votes) {
 			average += vote.vote();
 		}
