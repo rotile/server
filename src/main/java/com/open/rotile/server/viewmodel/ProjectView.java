@@ -11,11 +11,13 @@ public class ProjectView {
 	private String name;
 	private int average;
 	private List<Integer> votes;
+	private int nbVotes;
 
 	public ProjectView(Project project) {
 		this.name = project.name();
 		this.average = project.average();
 		this.votes = project.voteValues();
+		this.nbVotes = project.nbVotes();
 	}
 
 	@JsonProperty
@@ -31,5 +33,10 @@ public class ProjectView {
 	@JsonProperty
 	public List<Integer> votes() {
 		return votes;
+	}
+
+	@JsonProperty
+	public int nbVotes() {
+		return nbVotes;
 	}
 }

@@ -4,9 +4,9 @@
 <script src="scripts/angular.min.js"></script>
 <script src="scripts/project.js"></script>
 <script type="text/javascript">
-angular.module('project', [], function($locationProvider) {
-    $locationProvider.html5Mode(true);
-  });
+	angular.module('project', [], function($locationProvider) {
+		$locationProvider.html5Mode(true);
+	});
 </script>
 <link rel=stylesheet type="text/css" href="style.css">
 </head>
@@ -22,6 +22,8 @@ angular.module('project', [], function($locationProvider) {
 					placeholder="Your vote" required /> <input type="submit"
 					id="submit" value="Vote" />
 			</form>
+			<p>Number of votes already registered: {{project.nbVotes}}</p>
+			<p>Average: {{project.average}}</p>
 		</div>
 	</div>
 </body>
