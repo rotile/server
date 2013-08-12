@@ -1,0 +1,29 @@
+<html ng-app="project">
+
+<head>
+<script src="scripts/angular.min.js"></script>
+<script src="scripts/project.js"></script>
+<script type="text/javascript">
+angular.module('project', [], function($locationProvider) {
+    $locationProvider.html5Mode(true);
+  });
+</script>
+<link rel=stylesheet type="text/css" href="style.css">
+</head>
+
+<body ng-controller="Ctrl">
+	<div class="topbar">Project {{project.name}}</div>
+	<div class="container">
+		<div class="vote-container">
+			<span class="vote-title">Vote for current project</span>
+			<form class="vote-form" name="voteForm" ng-submit="submit()">
+				<p>Enter the value of your vote for the project</p>
+				Your vote: <input type="text" ng-model="vote" name="input"
+					placeholder="Your vote" required /> <input type="submit"
+					id="submit" value="Vote" />
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
