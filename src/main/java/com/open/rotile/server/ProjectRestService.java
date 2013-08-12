@@ -1,5 +1,6 @@
 package com.open.rotile.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -7,13 +8,15 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.google.inject.Inject;
 import com.open.rotile.exception.ProjectAlreadyExistException;
 import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
+import com.open.rotile.server.viewmodel.ProjectView;
 import com.open.rotile.service.IProjectService;
 
 @Path("/projects")
@@ -38,18 +41,22 @@ public class ProjectRestService {
 	}
 
 	@GET
-	public Response listProjects() {
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProjectView> listProjects() {
 		List<Project> projectList = projectService.listProjects();
-		ResponseBuilder response = Response.ok(projectList.toString());
-		return response.build();
+		List<ProjectView> projectViews = new ArrayList<ProjectView>();
+		for (Project project : projectList) {
+			projectViews.add(new ProjectView(project));
+		}
+		return projectViews;
 	}
 
 	@GET
 	@Path("/{projectName}")
-	public Response getProject(@PathParam("projectName") String projectName) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public ProjectView getProject(@PathParam("projectName") String projectName) {
 		Project project = projectService.findProject(projectName);
-		ResponseBuilder response = Response.ok(project.toString());
-		return response.build();
+		return new ProjectView(project);
 	}
 
 	@POST

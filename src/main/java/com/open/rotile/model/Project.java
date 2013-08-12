@@ -43,9 +43,16 @@ public class Project {
 		return average / votes.size();
 	}
 
+	public List<Integer> voteValues() {
+		List<Integer> voteValues = new ArrayList<Integer>();
+		for (Vote vote : votes) {
+			voteValues.add(vote.vote());
+		}
+		return voteValues;
+	}
+
 	@Override
 	public String toString() {
 		return name + " - " + votes.toString();
 	}
-
 }
