@@ -1,10 +1,9 @@
 package com.open.rotile.service.persist.transaction;
 
-import com.googlecode.objectify.Work;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.IProjectPersistService;
 
-public class CreateProjectTransaction implements Work<Boolean> {
+public class CreateProjectTransaction extends AbstractTransaction<Boolean> {
 
 	private IProjectPersistService projectPersistService;
 	private Project project;
@@ -16,7 +15,7 @@ public class CreateProjectTransaction implements Work<Boolean> {
 	}
 
 	@Override
-	public Boolean run() {
+	protected Boolean doRun() {
 		// cannot create the project if it already exists
 		if (projectPersistService.projectExists(project.name())) {
 			return false;
