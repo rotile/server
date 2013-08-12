@@ -8,7 +8,7 @@ function Ctrl($scope, $http, $location) {
 			url : '/services/projects/' + $scope.project.name + '/' + this.vote,
 			method : "POST"
 		});
-		this.name = '';
+		this.vote = '';
 		getProject($scope, $http);
 	};
 }
