@@ -2,28 +2,30 @@
 
 <head>
 <script src="scripts/angular.min.js"></script>
-<script src="scripts/vote.js"></script>
+<script src="scripts/projects.js"></script>
 <link rel=stylesheet type="text/css" href="style.css">
 </head>
 
 <body>
-	<div class="topbar">Voting for your project</div>
+	<div class="topbar">Projects</div>
 	<div class="container">
 		<div ng-controller="Ctrl">
 			<div class="vote-container">
-				<span class="vote-title">Vote for your project</span>
+				<span class="vote-title">Create a new project</span>
 				<form class="vote-form" name="voteForm" ng-submit="submit()">
-					<p>Vote for your project, give a value between 1 and 5</p>
-					Your vote: <input type="text" ng-model="vote" name="input"
-						placeholder="Vote here" required /> <input type="submit"
-						id="submit" value="Vote" />
+					<p>Enter the name of your project</p>
+					Your project: <input type="text" ng-model="name" name="input"
+						placeholder="You project name" required /> <input type="submit"
+						id="submit" value="Create" />
 				</form>
 			</div>
 
 			<div class="vote-container vote-list">
-				<span class="vote-title">Votes already submitted</span>
-				<p>Votes that were already submitted for this project:</p>
-				<li ng-repeat="vote in votes">{{vote}}</li>
+				<span class="vote-title">List of existing projects</span>
+				<p>List of projects already created:</p>
+				<ul>
+					<li ng-repeat="project in projects"><a href="/project.html?projectId={{project.name}}">{{project.name}}</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
