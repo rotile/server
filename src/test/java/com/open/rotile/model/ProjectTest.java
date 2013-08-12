@@ -52,16 +52,4 @@ public class ProjectTest {
 		// Then
 		Assertions.assertThat(average).isEqualTo(expectedAverage);
 	}
-
-	@Test
-	public void average_returns_0_if_no_votes() {
-		// Given
-		Project project = new Project();
-
-		// When
-		int average = project.average();
-
-		// Then
-		Assertions.assertThat(average).isZero();
-	}
 }
