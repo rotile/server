@@ -12,6 +12,10 @@ public class Project {
 	private String name;
 	protected List<Vote> votes = new ArrayList<Vote>();
 
+	public List<Vote> getVotes() {
+		return votes;
+	}
+
 	public Project() {
 	}
 
@@ -33,6 +37,10 @@ public class Project {
 
 	public int average() {
 		int average = 0;
+		if (votes.isEmpty()) {
+			return average;
+		}
+
 		for (Vote vote : votes) {
 			average += vote.vote();
 		}
