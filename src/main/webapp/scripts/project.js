@@ -1,7 +1,7 @@
-function Ctrl($scope, $http, $location) {
+function ProjectController($scope, $http, $location, $routeParams) {
 
-	$scope.projectId = $location.search().projectId;
-	$scope.project = getProject($scope, $http);
+//	$scope.projectId = $location.search().projectId;
+	$scope.project = getProject($scope, $http, $routeParams.projectId);
 
 	$scope.submit = function() {
 		$http({
@@ -13,8 +13,8 @@ function Ctrl($scope, $http, $location) {
 	};
 }
 
-function getProject($scope, $http) {
-	$http.get('/services/projects/' + $scope.projectId).success(function(data) {
+function getProject($scope, $http, projectId) {
+	$http.get('/services/projects/' + projectId).success(function(data) {
 		$scope.project = angular.fromJson(data);
 	});
 }

@@ -17,9 +17,10 @@ public class ProjectService implements IProjectService {
 	}
 
 	@Override
-	public void createProject(String name, String description) {
+	public String createProject(String name, String description) {
 		Project project = new Project(name, description);
 		projectPersistService.createProject(project);
+		return project.id();
 	}
 
 	@Override

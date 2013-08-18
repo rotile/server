@@ -28,7 +28,7 @@ public class ProjectServiceTest {
 	}
 
 	@Test
-	public void createProject_create_new_project() {
+	public void createProject_create_new_project_and_return_id() {
 		// Given
 		ArgumentCaptor<Project> argCaptor = ArgumentCaptor
 				.forClass(Project.class);
@@ -36,12 +36,14 @@ public class ProjectServiceTest {
 				.createProject(argCaptor.capture());
 
 		// When
-		service.createProject(projectName, projectDescription);
+		String projectId = service.createProject(projectName,
+				projectDescription);
 
 		// Then
 		Assertions.assertThat(argCaptor.getValue()).isNotNull();
 		Assertions.assertThat(argCaptor.getValue().name()).isEqualTo(
 				projectName);
+		Assertions.assertThat(projectId).isEqualTo(argCaptor.getValue().id());
 	}
 
 	@Test

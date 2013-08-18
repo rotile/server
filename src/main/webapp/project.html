@@ -1,17 +1,4 @@
-<html ng-app="project">
 
-<head>
-<script src="scripts/angular.min.js"></script>
-<script src="scripts/project.js"></script>
-<script type="text/javascript">
-	angular.module('project', [], function($locationProvider) {
-		$locationProvider.html5Mode(true);
-	});
-</script>
-<link rel=stylesheet type="text/css" href="style.css">
-</head>
-
-<body ng-controller="Ctrl">
 	<div class="topbar">Project {{project.name}}</div>
 	<div class="container">
 		<div class="vote-container">
@@ -26,6 +13,3 @@
 			<p>Average: {{project.average}}</p>
 		</div>
 	</div>
-</body>
-
-</html>

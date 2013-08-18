@@ -32,9 +32,9 @@ public class ProjectRestService {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createProject(ProjectView projectView) {
-		projectService.createProject(projectView.name(),
+		String projectId = projectService.createProject(projectView.name(),
 				projectView.description());
-		return Response.ok().build();
+		return Response.ok(projectId).build();
 	}
 
 	@GET
