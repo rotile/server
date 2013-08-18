@@ -15,6 +15,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
+import com.open.rotile.server.model.EmailData;
 import com.open.rotile.service.persist.IProjectPersistService;
 
 @RunWith(PowerMockRunner.class)
@@ -25,14 +26,16 @@ public class ProjectServiceTest {
 	private ProjectService service;
 	final String projectName = "my project";
 	final String projectDescription = "Project description.";
-	final String email = "email@email.com";
 	final int vote = 3;
+	EmailData emailData;
 
 	@Before
 	public void setUp() {
 		projectPersistService = Mockito.mock(IProjectPersistService.class);
 		emailService = Mockito.mock(IEmailService.class);
 		service = new ProjectService(projectPersistService, emailService);
+		emailData = Mockito.mock(EmailData.class);
+		Mockito.when(emailData.hasEmail()).thenReturn(true);
 	}
 
 	@Test
@@ -45,7 +48,7 @@ public class ProjectServiceTest {
 
 		// When
 		String projectId = service.createProject(projectName,
-				projectDescription, email);
+				projectDescription, emailData);
 
 		// Then
 		Assertions.assertThat(argCaptor.getValue()).isNotNull();
@@ -63,10 +66,10 @@ public class ProjectServiceTest {
 				.thenReturn(project);
 
 		// When
-		service.createProject(projectName, projectDescription, email);
+		service.createProject(projectName, projectDescription, emailData);
 
 		// Then
-		Mockito.verify(emailService).sendCreationEmail(email, project);
+		Mockito.verify(emailService).sendCreationEmail(emailData, project);
 	}
 
 	@Test

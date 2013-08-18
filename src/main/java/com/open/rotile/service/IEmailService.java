@@ -1,8 +1,9 @@
 package com.open.rotile.service;
 
 import com.open.rotile.model.Project;
+import com.open.rotile.server.model.EmailData;
 
 public interface IEmailService {
 
-	public void sendCreationEmail(String email, Project project);
+	void sendCreationEmail(EmailData emailData, Project project);
 }
