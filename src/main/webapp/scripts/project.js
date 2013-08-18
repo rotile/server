@@ -1,6 +1,5 @@
 function ProjectController($scope, $http, $location, $routeParams) {
 
-//	$scope.projectId = $location.search().projectId;
 	$scope.project = getProject($scope, $http, $routeParams.projectId);
 
 	$scope.submit = function() {

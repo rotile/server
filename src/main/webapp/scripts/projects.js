@@ -20,5 +20,5 @@ function getProjects($scope, $http) {
 }
 
 function toProjectPage($location, id) {
-	$location.path('#/project/' + id);
+	$location.path('/project/' + id);
 }
