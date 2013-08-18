@@ -5,7 +5,7 @@ function Ctrl($scope, $http, $location) {
 
 	$scope.submit = function() {
 		$http({
-			url : '/services/projects/' + $scope.project.name + '/' + this.vote,
+			url : '/services/projects/' + $scope.project.id + '/' + this.vote,
 			method : "POST"
 		});
 		this.vote = '';

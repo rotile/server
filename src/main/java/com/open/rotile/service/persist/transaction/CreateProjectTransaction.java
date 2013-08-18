@@ -3,7 +3,7 @@ package com.open.rotile.service.persist.transaction;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.IProjectPersistService;
 
-public class CreateProjectTransaction extends AbstractTransaction<Boolean> {
+public class CreateProjectTransaction extends AbstractTransaction<Void> {
 
 	private IProjectPersistService projectPersistService;
 	private Project project;
@@ -15,13 +15,8 @@ public class CreateProjectTransaction extends AbstractTransaction<Boolean> {
 	}
 
 	@Override
-	protected Boolean doRun() {
-		// cannot create the project if it already exists
-		if (projectPersistService.projectExists(project.name())) {
-			return false;
-		}
-
+	protected Void doRun() {
 		projectPersistService.save(project);
-		return true;
+		return null;
 	}
 }

@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import com.open.rotile.exception.ProjectAlreadyExistException;
 import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.IProjectPersistService;
@@ -19,7 +18,7 @@ public class ProjectServiceTest {
 	private IProjectPersistService projectPersistService;
 	private ProjectService service;
 	final String projectName = "my project";
-	final String projectDescription ="Project description.";
+	final String projectDescription = "Project description.";
 	final int vote = 3;
 
 	@Before
@@ -29,13 +28,12 @@ public class ProjectServiceTest {
 	}
 
 	@Test
-	public void createProject_create_new_project()
-			throws ProjectAlreadyExistException {
+	public void createProject_create_new_project() {
 		// Given
 		ArgumentCaptor<Project> argCaptor = ArgumentCaptor
 				.forClass(Project.class);
-		Mockito.when(projectPersistService.createProject(argCaptor.capture()))
-				.thenReturn(true);
+		Mockito.doNothing().when(projectPersistService)
+				.createProject(argCaptor.capture());
 
 		// When
 		service.createProject(projectName, projectDescription);
@@ -44,21 +42,6 @@ public class ProjectServiceTest {
 		Assertions.assertThat(argCaptor.getValue()).isNotNull();
 		Assertions.assertThat(argCaptor.getValue().name()).isEqualTo(
 				projectName);
-	}
-
-	@Test(expected = ProjectAlreadyExistException.class)
-	public void createProject_throws_exception_if_project_already_exist()
-			throws ProjectAlreadyExistException {
-		// Given
-		Mockito.when(
-				projectPersistService.createProject(Mockito.any(Project.class)))
-				.thenReturn(false);
-
-		// When
-		service.createProject(projectName, projectDescription);
-
-		// Then
-		// See @Test
 	}
 
 	@Test

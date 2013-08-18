@@ -3,7 +3,6 @@ package com.open.rotile.service;
 import java.util.List;
 
 import com.google.inject.Inject;
-import com.open.rotile.exception.ProjectAlreadyExistException;
 import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.IProjectPersistService;
@@ -18,27 +17,22 @@ public class ProjectService implements IProjectService {
 	}
 
 	@Override
-	public void createProject(String name, String description)
-			throws ProjectAlreadyExistException {
+	public void createProject(String name, String description) {
 		Project project = new Project(name, description);
-		boolean projectCreated = projectPersistService.createProject(project);
-		if (projectCreated == false) {
-			throw new ProjectAlreadyExistException(name);
-		}
+		projectPersistService.createProject(project);
 	}
 
 	@Override
-	public void vote(String projectName, int vote)
-			throws ProjectDoesNotExistException {
-		boolean voted = projectPersistService.voteForProject(projectName, vote);
+	public void vote(String id, int vote) throws ProjectDoesNotExistException {
+		boolean voted = projectPersistService.voteForProject(id, vote);
 		if (voted == false) {
-			throw new ProjectDoesNotExistException(projectName);
+			throw new ProjectDoesNotExistException();
 		}
 	}
 
 	@Override
-	public Project findProject(String name) {
-		return projectPersistService.findProject(name);
+	public Project findProject(String id) {
+		return projectPersistService.findProject(id);
 	}
 
 	@Override

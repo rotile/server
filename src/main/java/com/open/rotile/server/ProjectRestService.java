@@ -14,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.inject.Inject;
-import com.open.rotile.exception.ProjectAlreadyExistException;
 import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
 import com.open.rotile.server.viewmodel.ProjectView;
@@ -33,12 +32,9 @@ public class ProjectRestService {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createProject(ProjectView projectView) {
-		try {
-			projectService.createProject(projectView.name(), projectView.description());
-			return Response.ok().build();
-		} catch (ProjectAlreadyExistException e) {
-			return Response.serverError().build();
-		}
+		projectService.createProject(projectView.name(),
+				projectView.description());
+		return Response.ok().build();
 	}
 
 	@GET
@@ -53,19 +49,18 @@ public class ProjectRestService {
 	}
 
 	@GET
-	@Path("/{projectName}")
+	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ProjectView getProject(@PathParam("projectName") String projectName) {
-		Project project = projectService.findProject(projectName);
+	public ProjectView getProject(@PathParam("id") String projectId) {
+		Project project = projectService.findProject(projectId);
 		return new ProjectView(project);
 	}
 
 	@POST
-	@Path("/{projectName}/{vote}")
-	public Response vote(@PathParam("projectName") String projectName,
-			@PathParam("vote") int vote) {
+	@Path("/{id}/{vote}")
+	public Response vote(@PathParam("id") String id, @PathParam("vote") int vote) {
 		try {
-			projectService.vote(projectName, vote);
+			projectService.vote(id, vote);
 			return Response.ok().build();
 		} catch (ProjectDoesNotExistException e) {
 			return Response.serverError().build();

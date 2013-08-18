@@ -8,28 +8,13 @@ public class ProjectDoesNotExistExceptionTest {
 	@Test
 	public void message_is_as_expected() {
 		// Given
-		final String projectName = "my project";
-		final String expectedMessage = "Project my project does not exist.";
+		final String expectedMessage = "Project does not exist.";
 
 		// When
-		ProjectDoesNotExistException exception = new ProjectDoesNotExistException(
-				projectName);
+		ProjectDoesNotExistException exception = new ProjectDoesNotExistException();
 
 		// Then
 		Assertions.assertThat(exception.getMessage())
 				.isEqualTo(expectedMessage);
-	}
-
-	@Test
-	public void projectName_saved() {
-		// Given
-		final String projectName = "my project";
-
-		// When
-		ProjectDoesNotExistException exception = new ProjectDoesNotExistException(
-				projectName);
-
-		// Then
-		Assertions.assertThat(exception.projectName()).isEqualTo(projectName);
 	}
 }

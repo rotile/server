@@ -8,13 +8,11 @@ public interface IProjectPersistService {
 
 	public void save(Project project);
 
-	public boolean projectExists(String projectName);
+	void createProject(Project project);
 
-	boolean createProject(Project project);
+	boolean voteForProject(String id, final int vote);
 
-	boolean voteForProject(final String projectName, final int vote);
-
-	public Project findProject(String projectName);
+	public Project findProject(String id);
 
 	public List<Project> listProjects();
 

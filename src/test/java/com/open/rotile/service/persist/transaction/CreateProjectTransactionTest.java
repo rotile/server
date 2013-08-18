@@ -1,6 +1,5 @@
 package com.open.rotile.service.persist.transaction;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -27,27 +26,11 @@ public class CreateProjectTransactionTest {
 	@Test
 	public void run_persist_project_and_return_true() {
 		// Given
-		Mockito.when(projectPersistService.projectExists(projectName))
-				.thenReturn(false);
 
 		// When
-		boolean created = transaction.run();
+		transaction.run();
 
 		// Then
-		Assertions.assertThat(created).isTrue();
 		Mockito.verify(projectPersistService).save(project);
-	}
-
-	@Test
-	public void run_does_nothing_and_return_false_if_project_already_exists() {
-		// Given
-		Mockito.when(projectPersistService.projectExists(projectName))
-				.thenReturn(true);
-
-		// When
-		boolean created = transaction.run();
-
-		// Then
-		Assertions.assertThat(created).isFalse();
 	}
 }

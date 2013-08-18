@@ -10,8 +10,8 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class Project {
 	@Id
-	private String name;
 	private String id;
+	private String name;
 	private String description;
 	protected List<Vote> votes = new ArrayList<Vote>();
 

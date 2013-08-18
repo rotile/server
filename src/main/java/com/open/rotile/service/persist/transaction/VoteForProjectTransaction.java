@@ -6,21 +6,20 @@ import com.open.rotile.service.persist.IProjectPersistService;
 public class VoteForProjectTransaction extends AbstractTransaction<Boolean> {
 
 	private IProjectPersistService projectPersistService;
-	private String projectName;
+	private String id;
 	private int vote;
 
 	public VoteForProjectTransaction(
-			IProjectPersistService projectPersistService, String projectName,
-			int vote) {
+			IProjectPersistService projectPersistService, String id, int vote) {
 		this.projectPersistService = projectPersistService;
-		this.projectName = projectName;
+		this.id = id;
 		this.vote = vote;
 	}
 
 	@Override
 	protected Boolean doRun() {
 
-		Project project = projectPersistService.findProject(projectName);
+		Project project = projectPersistService.findProject(id);
 		// Return false if project does not exist
 		if (project == null) {
 			return false;

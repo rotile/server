@@ -16,27 +16,18 @@ public class ProjectPersistService implements IProjectPersistService {
 	}
 
 	@Override
-	public boolean projectExists(String projectName) {
-		return findProject(projectName) != null;
+	public void createProject(final Project project) {
+		ofy().transact(new CreateProjectTransaction(this, project));
 	}
 
 	@Override
-	public boolean createProject(final Project project) {
-		boolean projectCreated = ofy().transact(
-				new CreateProjectTransaction(this, project));
-		return projectCreated;
+	public boolean voteForProject(String id, final int vote) {
+		return ofy().transact(new VoteForProjectTransaction(this, id, vote));
 	}
 
 	@Override
-	public boolean voteForProject(final String projectName, final int vote) {
-		return ofy().transact(
-				new VoteForProjectTransaction(this, projectName, vote));
-	}
-
-	@Override
-	public Project findProject(String projectName) {
-		return ofy().transactionless().load().type(Project.class)
-				.id(projectName).now();
+	public Project findProject(String id) {
+		return ofy().transactionless().load().type(Project.class).id(id).now();
 	}
 
 	@Override
