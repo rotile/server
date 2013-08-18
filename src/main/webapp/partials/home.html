@@ -6,13 +6,21 @@
 		<form class="vote-form" name="voteForm" ng-submit="submit()">
 			<div class="vote-form-element">
 				<label class="vote-form-title">Your project: </label> <input
-					type="text" ng-model="projectView.name" name="input"
-					placeholder="You project name" required />
+					type="text" ng-model="projectCreationData.name" name="input"
+					placeholder="Project name" required class="vote-input" />
 			</div>
 			<div class="vote-desc-container vote-form-element">
 				<label class="vote-form-title">Description (optional): </label>
 				<textarea cols="50" rows="5" placeholder="Project description..."
-					ng-model="projectView.description"></textarea>
+					ng-model="projectCreationData.description"></textarea>
+			</div>
+			<div class="vote-form-element">
+				<label class="vote-form-title">Email (optional): </label> <input
+					type="email" ng-model="projectCreationData.email" name="input" placeholder="Your email"
+					class="vote-input" />
+				<div class="info">This email will only be used to send you
+					project info so you can keep a track of it. It will not be stored
+					nor used for any other purpose.</div>
 			</div>
 			<input type="submit" id="submit" value="Create" />
 		</form>

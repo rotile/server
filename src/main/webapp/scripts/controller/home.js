@@ -1,10 +1,10 @@
 function HomeController($scope, $http, $filter, $location) {
-	$scope.projectView = new Object();
+	$scope.projectCreationData = new Object();
 	$scope.submit = function() {
 		$http({
 			url : '/services/projects',
 			method : 'PUT',
-			data : $filter('json')($scope.projectView)
+			data : $filter('json')($scope.projectCreationData)
 		}).success(function(data) {
 			toProjectPage($location, data);
 		});

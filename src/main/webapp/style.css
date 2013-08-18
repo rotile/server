@@ -54,10 +54,21 @@ input {
 	vertical-align: top;
 }
 
+.vote-input {
+	width: 250px;
+}
+
 .vote-list {
 	margin-top: 50px;
 }
 
 .description {
+	font-style: italic;
+}
+
+.info {
+	margin-top: 5px;
+	font-style: italic;
+	font-size: 12px;
 	font-style: italic;
 }

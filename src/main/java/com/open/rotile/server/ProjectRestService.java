@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import com.google.inject.Inject;
 import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
+import com.open.rotile.server.viewmodel.ProjectCreationData;
 import com.open.rotile.server.viewmodel.ProjectView;
 import com.open.rotile.service.IProjectService;
 
@@ -31,9 +32,9 @@ public class ProjectRestService {
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createProject(ProjectView projectView) {
-		String projectId = projectService.createProject(projectView.name(),
-				projectView.description());
+	public Response createProject(ProjectCreationData projectCreationData) {
+		String projectId = projectService.createProject(
+				projectCreationData.name(), projectCreationData.description());
 		return Response.ok(projectId).build();
 	}
 
