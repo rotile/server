@@ -10,16 +10,22 @@ import com.open.rotile.service.persist.IProjectPersistService;
 public class ProjectService implements IProjectService {
 
 	private IProjectPersistService projectPersistService;
+	private IEmailService emailService;
 
 	@Inject
-	public ProjectService(IProjectPersistService projectPersistService) {
+	public ProjectService(IProjectPersistService projectPersistService,
+			IEmailService emailService) {
 		this.projectPersistService = projectPersistService;
+		this.emailService = emailService;
 	}
 
 	@Override
-	public String createProject(String name, String description) {
+	public String createProject(String name, String description, String email) {
 		Project project = new Project(name, description);
 		projectPersistService.createProject(project);
+		if (email != null) {
+			emailService.sendCreationEmail(email, project);
+		}
 		return project.id();
 	}
 

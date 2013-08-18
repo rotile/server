@@ -34,7 +34,8 @@ public class ProjectRestService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createProject(ProjectCreationData projectCreationData) {
 		String projectId = projectService.createProject(
-				projectCreationData.name(), projectCreationData.description());
+				projectCreationData.name(), projectCreationData.description(),
+				projectCreationData.email());
 		return Response.ok(projectId).build();
 	}
 

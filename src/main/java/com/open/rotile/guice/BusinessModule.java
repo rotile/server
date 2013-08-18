@@ -1,6 +1,8 @@
 package com.open.rotile.guice;
 
 import com.google.inject.AbstractModule;
+import com.open.rotile.service.EmailService;
+import com.open.rotile.service.IEmailService;
 import com.open.rotile.service.IProjectService;
 import com.open.rotile.service.ProjectService;
 import com.open.rotile.service.persist.IProjectPersistService;
@@ -13,5 +15,6 @@ public class BusinessModule extends AbstractModule {
 		// Bind all business services
 		bind(IProjectService.class).to(ProjectService.class);
 		bind(IProjectPersistService.class).to(ProjectPersistService.class);
+		bind(IEmailService.class).to(EmailService.class);
 	}
 }

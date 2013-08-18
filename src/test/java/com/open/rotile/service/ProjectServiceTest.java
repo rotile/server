@@ -6,25 +6,33 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
 import com.open.rotile.service.persist.IProjectPersistService;
 
+@RunWith(PowerMockRunner.class)
 public class ProjectServiceTest {
 
 	private IProjectPersistService projectPersistService;
+	private IEmailService emailService;
 	private ProjectService service;
 	final String projectName = "my project";
 	final String projectDescription = "Project description.";
+	final String email = "email@email.com";
 	final int vote = 3;
 
 	@Before
 	public void setUp() {
 		projectPersistService = Mockito.mock(IProjectPersistService.class);
-		service = new ProjectService(projectPersistService);
+		emailService = Mockito.mock(IEmailService.class);
+		service = new ProjectService(projectPersistService, emailService);
 	}
 
 	@Test
@@ -37,13 +45,28 @@ public class ProjectServiceTest {
 
 		// When
 		String projectId = service.createProject(projectName,
-				projectDescription);
+				projectDescription, email);
 
 		// Then
 		Assertions.assertThat(argCaptor.getValue()).isNotNull();
 		Assertions.assertThat(argCaptor.getValue().name()).isEqualTo(
 				projectName);
 		Assertions.assertThat(projectId).isEqualTo(argCaptor.getValue().id());
+	}
+
+	@Test
+	@PrepareForTest(ProjectService.class)
+	public void createProject_send_email_if_given_one() throws Exception {
+		// Given
+		Project project = Mockito.mock(Project.class);
+		PowerMockito.whenNew(Project.class).withAnyArguments()
+				.thenReturn(project);
+
+		// When
+		service.createProject(projectName, projectDescription, email);
+
+		// Then
+		Mockito.verify(emailService).sendCreationEmail(email, project);
 	}
 
 	@Test

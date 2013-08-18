@@ -7,7 +7,7 @@ import com.open.rotile.model.Project;
 
 public interface IProjectService {
 
-	String createProject(String name, String description);
+	String createProject(String name, String description, String email);
 
 	void vote(String id, int vote) throws ProjectDoesNotExistException;
 
