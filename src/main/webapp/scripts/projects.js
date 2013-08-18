@@ -1,12 +1,17 @@
-function Ctrl($scope, $http) {
+function Ctrl($scope, $http, $filter) {
 	$scope.submit = function() {
+		var projectView = new Object();
+		projectView.name = this.name;
+		projectView.description = this.description;
+		$scope.projectView = projectView;
 		$http({
 			url : '/services/projects',
 			method : 'PUT',
-			data : '{ "name": "' + this.name + '", "description": "' + this.description + '"}'
+			data : $filter('json')($scope.projectView)
 		});
 		this.name = '';
 		this.description = '';
+		$scope.projectView = null;
 		getProjects($scope, $http);
 	};
 
