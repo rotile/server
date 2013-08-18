@@ -13,10 +13,17 @@
 			<div class="vote-container">
 				<span class="vote-title">Create a new project</span>
 				<form class="vote-form" name="voteForm" ng-submit="submit()">
-					<p>Enter the name of your project</p>
-					Your project: <input type="text" ng-model="name" name="input"
-						placeholder="You project name" required /> <input type="submit"
-						id="submit" value="Create" />
+					<div class="vote-form-element">
+						<label class="vote-form-title">Your project: </label> <input
+							type="text" ng-model="name" name="input"
+							placeholder="You project name" required />
+					</div>
+					<div class="vote-desc-container vote-form-element">
+						<label class="vote-form-title">Description (optional): </label>
+						<textarea cols="50" rows="5" placeholder="Project description..."
+							ng-model="description"></textarea>
+					</div>
+					<input type="submit" id="submit" value="Create" />
 				</form>
 			</div>
 
@@ -24,7 +31,8 @@
 				<span class="vote-title">List of existing projects</span>
 				<p>List of projects already created:</p>
 				<ul>
-					<li ng-repeat="project in projects"><a href="/project.html?projectId={{project.name}}">{{project.name}}</a></li>
+					<li ng-repeat="project in projects"><a
+						href="/project.html?projectId={{project.name}}">{{project.name}}</a></li>
 				</ul>
 			</div>
 		</div>

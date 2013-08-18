@@ -9,9 +9,14 @@ import com.open.rotile.model.Project;
 public class ProjectView {
 
 	private String name;
+	private String description;
 	private int average;
 	private List<Integer> votes;
 	private int nbVotes;
+	
+	public ProjectView() {
+		
+	}
 
 	public ProjectView(Project project) {
 		this.name = project.name();
@@ -23,6 +28,11 @@ public class ProjectView {
 	@JsonProperty
 	public String name() {
 		return name;
+	}
+	
+	@JsonProperty
+	public String description() {
+		return description;
 	}
 
 	@JsonProperty

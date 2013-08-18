@@ -1,3 +1,13 @@
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+input {
+	font-family: inherit;
+	font-size: inherit;
+}
+
 .topbar {
 	width: 100%;
 	background-color: #563D7C;
@@ -17,6 +27,11 @@
 	font-family: arial;
 }
 
+.vote-form-title {
+	width: 170px;
+	display: inline-block;
+}
+
 .vote-container {
 	border: 1px solid #E5E5E5;
 	padding: 10px;
@@ -29,6 +44,14 @@
 
 .vote-form {
 	margin-top: 15px;
+}
+
+.vote-form-element {
+	margin-bottom: 10px;
+}
+
+.vote-desc-container * {
+	vertical-align: top;
 }
 
 .vote-list {

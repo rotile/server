@@ -1,10 +1,12 @@
 function Ctrl($scope, $http) {
 	$scope.submit = function() {
 		$http({
-			url : '/services/projects/' + this.name,
-			method : "PUT"
+			url : '/services/projects',
+			method : 'PUT',
+			data : '{ "name": "' + this.name + '", "description": "' + this.description + '"}'
 		});
 		this.name = '';
+		this.description = '';
 		getProjects($scope, $http);
 	};
 

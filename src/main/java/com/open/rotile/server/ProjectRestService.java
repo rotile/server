@@ -3,6 +3,7 @@ package com.open.rotile.server;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -30,10 +31,10 @@ public class ProjectRestService {
 	}
 
 	@PUT
-	@Path("/{projectName}")
-	public Response createProject(@PathParam("projectName") String projectName) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response createProject(ProjectView projectView) {
 		try {
-			projectService.createProject(projectName);
+			projectService.createProject(projectView.name());
 			return Response.ok().build();
 		} catch (ProjectAlreadyExistException e) {
 			return Response.serverError().build();
