@@ -34,7 +34,7 @@ public class ProjectRestService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createProject(ProjectView projectView) {
 		try {
-			projectService.createProject(projectView.name());
+			projectService.createProject(projectView.name(), projectView.description());
 			return Response.ok().build();
 		} catch (ProjectAlreadyExistException e) {
 			return Response.serverError().build();

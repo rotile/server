@@ -20,6 +20,7 @@ public class ProjectView {
 
 	public ProjectView(Project project) {
 		this.name = project.name();
+		this.description = project.description();
 		this.average = project.average();
 		this.votes = project.voteValues();
 		this.nbVotes = project.nbVotes();

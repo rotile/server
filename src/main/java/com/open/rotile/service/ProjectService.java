@@ -18,8 +18,9 @@ public class ProjectService implements IProjectService {
 	}
 
 	@Override
-	public void createProject(String name) throws ProjectAlreadyExistException {
-		Project project = new Project(name);
+	public void createProject(String name, String description)
+			throws ProjectAlreadyExistException {
+		Project project = new Project(name, description);
 		boolean projectCreated = projectPersistService.createProject(project);
 		if (projectCreated == false) {
 			throw new ProjectAlreadyExistException(name);

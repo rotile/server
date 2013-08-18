@@ -8,7 +8,8 @@ import com.open.rotile.model.Project;
 
 public interface IProjectService {
 
-	void createProject(String name) throws ProjectAlreadyExistException;
+	void createProject(String name, String description)
+			throws ProjectAlreadyExistException;
 
 	void vote(String projectName, int vote) throws ProjectDoesNotExistException;
 

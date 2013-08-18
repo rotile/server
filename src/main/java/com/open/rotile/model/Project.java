@@ -10,17 +10,23 @@ import com.googlecode.objectify.annotation.Id;
 public class Project {
 	@Id
 	private String name;
+	private String description;
 	protected List<Vote> votes = new ArrayList<Vote>();
 
 	public Project() {
 	}
 
-	public Project(String name) {
+	public Project(String name, String description) {
 		this.name = name;
+		this.description = description;
 	}
 
 	public String name() {
 		return name;
+	}
+
+	public String description() {
+		return description;
 	}
 
 	public void vote(int vote) {

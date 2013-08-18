@@ -11,6 +11,7 @@ import com.open.rotile.service.persist.IProjectPersistService;
 public class CreateProjectTransactionTest {
 
 	private final static String projectName = "my project";
+	private final static String projectDescription = "Project description.";
 	private Project project;
 	private CreateProjectTransaction transaction;
 	private IProjectPersistService projectPersistService;
@@ -18,7 +19,7 @@ public class CreateProjectTransactionTest {
 	@Before
 	public void setUp() {
 		projectPersistService = Mockito.mock(IProjectPersistService.class);
-		project = new Project(projectName);
+		project = new Project(projectName, projectDescription);
 		transaction = new CreateProjectTransaction(projectPersistService,
 				project);
 	}

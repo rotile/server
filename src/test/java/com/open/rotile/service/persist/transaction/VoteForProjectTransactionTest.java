@@ -12,6 +12,7 @@ public class VoteForProjectTransactionTest {
 
 	private IProjectPersistService projectPersistService;
 	private final String projectName = "my project";
+	private final String projectDescription = "Project description.";
 	private final int vote = 3;
 	private VoteForProjectTransaction transaction;
 
@@ -38,7 +39,7 @@ public class VoteForProjectTransactionTest {
 	@Test
 	public void run_finds_and_saves_project_with_new_vote() {
 		// Given
-		Project project = new Project(projectName);
+		Project project = new Project(projectName, projectDescription);
 		Mockito.when(projectPersistService.findProject(projectName))
 				.thenReturn(project);
 

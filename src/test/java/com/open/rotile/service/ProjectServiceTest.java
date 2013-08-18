@@ -12,18 +12,19 @@ import org.mockito.Mockito;
 import com.open.rotile.exception.ProjectAlreadyExistException;
 import com.open.rotile.exception.ProjectDoesNotExistException;
 import com.open.rotile.model.Project;
-import com.open.rotile.service.persist.ProjectPersistService;
+import com.open.rotile.service.persist.IProjectPersistService;
 
 public class ProjectServiceTest {
 
-	private ProjectPersistService projectPersistService;
+	private IProjectPersistService projectPersistService;
 	private ProjectService service;
 	final String projectName = "my project";
+	final String projectDescription ="Project description.";
 	final int vote = 3;
 
 	@Before
 	public void setUp() {
-		projectPersistService = Mockito.mock(ProjectPersistService.class);
+		projectPersistService = Mockito.mock(IProjectPersistService.class);
 		service = new ProjectService(projectPersistService);
 	}
 
@@ -37,7 +38,7 @@ public class ProjectServiceTest {
 				.thenReturn(true);
 
 		// When
-		service.createProject(projectName);
+		service.createProject(projectName, projectDescription);
 
 		// Then
 		Assertions.assertThat(argCaptor.getValue()).isNotNull();
@@ -54,7 +55,7 @@ public class ProjectServiceTest {
 				.thenReturn(false);
 
 		// When
-		service.createProject(projectName);
+		service.createProject(projectName, projectDescription);
 
 		// Then
 		// See @Test
@@ -90,7 +91,7 @@ public class ProjectServiceTest {
 	@Test
 	public void findProject_return_project_if_exists() {
 		// Given
-		Project expectedProject = new Project(projectName);
+		Project expectedProject = new Project(projectName, projectDescription);
 		Mockito.when(projectPersistService.findProject(projectName))
 				.thenReturn(expectedProject);
 
@@ -105,8 +106,8 @@ public class ProjectServiceTest {
 	public void listProjects_return_all_projects_like() {
 		// Given
 		List<Project> allProjects = new ArrayList<Project>();
-		allProjects.add(new Project("my project"));
-		allProjects.add(new Project("my project 2"));
+		allProjects.add(new Project("my project", projectDescription));
+		allProjects.add(new Project("my project 2", projectDescription));
 
 		Mockito.when(projectPersistService.listProjects()).thenReturn(
 				allProjects);
