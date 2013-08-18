@@ -8,7 +8,7 @@ function ProjectController($scope, $http, $location, $routeParams) {
 			method : "POST"
 		});
 		this.vote = '';
-		getProject($scope, $http);
+		getProject($scope, $http, $scope.project.id);
 	};
 }
 
