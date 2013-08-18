@@ -57,3 +57,7 @@ input {
 .vote-list {
 	margin-top: 50px;
 }
+
+.description {
+	font-style: italic;
+}

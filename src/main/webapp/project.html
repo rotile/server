@@ -15,9 +15,9 @@
 	<div class="topbar">Project {{project.name}}</div>
 	<div class="container">
 		<div class="vote-container">
-			<span class="vote-title">Vote for current project</span>
+			<span class="vote-title">Vote for {{project.name}}</span>
+			<div class="description">{{project.description}}</div>
 			<form class="vote-form" name="voteForm" ng-submit="submit()">
-				<p>Enter the value of your vote for the project</p>
 				Your vote: <input type="text" ng-model="vote" name="input"
 					placeholder="Your vote" required /> <input type="submit"
 					id="submit" value="Vote" />
