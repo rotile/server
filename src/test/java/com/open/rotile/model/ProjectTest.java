@@ -64,4 +64,35 @@ public class ProjectTest {
 		// Then
 		Assertions.assertThat(average).isZero();
 	}
+
+	@Test
+	public void project_id_contains_only_alphanum() {
+		// Given
+		Project project = new Project();
+
+		// When
+		String id = project.id();
+
+		CharSequence alphaNum = "[a-f[0-9]]*";
+
+		// Then
+		Assertions.assertThat(id).matches(alphaNum);
+	}
+
+	@Test
+	public void projects_with_same_name_have_different_id() {
+		// Given
+		String name = "project name";
+		String desc1 = "project 1 description";
+		String desc2 = "project 2 description";
+		Project project1 = new Project(name, desc1);
+		Project project2 = new Project(name, desc2);
+
+		// When
+		String id1 = project1.id();
+		String id2 = project2.id();
+
+		// Then
+		Assertions.assertThat(id1).isNotEqualTo(id2);
+	}
 }
