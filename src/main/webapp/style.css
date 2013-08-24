@@ -42,6 +42,11 @@ input {
 	font-size: 45px;
 }
 
+.vote-form-container {
+	float:left;
+	margin-right: 75px;
+}
+
 .vote-form {
 	margin-top: 15px;
 }
@@ -71,4 +76,12 @@ input {
 	font-style: italic;
 	font-size: 12px;
 	font-style: italic;
+}
+
+.qrcode {
+	
+}
+
+.vote-form-clear {
+	clear:both;
 }

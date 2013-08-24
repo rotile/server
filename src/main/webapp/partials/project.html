@@ -2,14 +2,21 @@
 <div class="topbar">Project {{project.name}}</div>
 <div class="container">
 	<div class="vote-container">
-		<span class="vote-title">Vote for {{project.name}}</span>
-		<div class="description">{{project.description}}</div>
-		<form class="vote-form" name="voteForm" ng-submit="submit()">
-			Your vote: <input type="text" ng-model="vote" name="input"
-				placeholder="Your vote" required /> <input type="submit"
-				id="submit" value="Vote" />
-		</form>
-		<p>Number of votes already registered: {{project.nbVotes}}</p>
-		<p>Average: {{project.average}}</p>
+		<div class="vote-form-container">
+			<span class="vote-title">Vote for {{project.name}}</span>
+			<div class="description">{{project.description}}</div>
+			<form class="vote-form" name="voteForm" ng-submit="submit()">
+				Your vote: <input type="text" ng-model="vote" name="input"
+					placeholder="Your vote" required /> <input type="submit"
+					id="submit" value="Vote" />
+			</form>
+			<p>Number of votes already registered: {{project.nbVotes}}</p>
+			<p>Average: {{project.average}}</p>
+		</div>
+		<div class="qrcode">
+			<p>Scan me on the mobile application to vote!</p>
+			<img alt="QR Code" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl={{project.id}}">
+		</div>
+		<div class="vote-form-clear"></div>
 	</div>
 </div>
