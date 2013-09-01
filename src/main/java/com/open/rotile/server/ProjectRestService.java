@@ -65,18 +65,6 @@ public class ProjectRestService {
 		return new ProjectView(project);
 	}
 
-	// TODO: remove me!
-	@POST
-	@Path("/{id}/{vote}")
-	public Response vote(@PathParam("id") String id, @PathParam("vote") int vote) {
-		try {
-			projectService.vote(id, vote, null);
-			return Response.ok().build();
-		} catch (ProjectDoesNotExistException e) {
-			return Response.serverError().build();
-		}
-	}
-
 	@POST
 	@Path("/{id}")
 	public Response vote(@PathParam("id") String id, VoteView vote) {
