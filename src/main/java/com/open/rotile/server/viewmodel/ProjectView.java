@@ -1,10 +1,12 @@
 package com.open.rotile.server.viewmodel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import com.open.rotile.model.Project;
+import com.open.rotile.model.Vote;
 
 public class ProjectView {
 
@@ -12,7 +14,7 @@ public class ProjectView {
 	private String name;
 	private String description;
 	private int average;
-	private List<Integer> votes;
+	private List<VoteView> votes;
 	private int nbVotes;
 
 	public ProjectView() {
@@ -24,7 +26,10 @@ public class ProjectView {
 		this.name = project.name();
 		this.description = project.description();
 		this.average = project.average();
-		this.votes = project.voteValues();
+		this.votes = new ArrayList<VoteView>();
+		for (Vote vote : project.votes()) {
+			this.votes.add(new VoteView(vote.vote(), vote.comment()));
+		}
 		this.nbVotes = project.nbVotes();
 	}
 
@@ -49,7 +54,7 @@ public class ProjectView {
 	}
 
 	@JsonProperty
-	public List<Integer> votes() {
+	public List<VoteView> votes() {
 		return votes;
 	}
 
