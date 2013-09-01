@@ -32,6 +32,10 @@ input {
 	display: inline-block;
 }
 
+.vote-comment-title {
+	margin-right: -5px;
+}
+
 .vote-container {
 	border: 1px solid #E5E5E5;
 	padding: 10px;
