@@ -8,12 +8,15 @@ public class VoteForProjectTransaction extends AbstractTransaction<Boolean> {
 	private IProjectPersistService projectPersistService;
 	private String id;
 	private int vote;
+	private String comment;
 
 	public VoteForProjectTransaction(
-			IProjectPersistService projectPersistService, String id, int vote) {
+			IProjectPersistService projectPersistService, String id, int vote,
+			String comment) {
 		this.projectPersistService = projectPersistService;
 		this.id = id;
 		this.vote = vote;
+		this.comment = comment;
 	}
 
 	@Override
@@ -25,7 +28,7 @@ public class VoteForProjectTransaction extends AbstractTransaction<Boolean> {
 			return false;
 		}
 
-		project.vote(vote);
+		project.vote(vote, comment);
 		projectPersistService.save(project);
 		return true;
 	}

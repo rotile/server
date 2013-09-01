@@ -27,6 +27,7 @@ public class ProjectServiceTest {
 	final String projectName = "my project";
 	final String projectDescription = "Project description.";
 	final int vote = 3;
+	final String comment = "vote comment";
 	EmailData emailData;
 
 	@Before
@@ -75,25 +76,30 @@ public class ProjectServiceTest {
 	@Test
 	public void vote_vote_for_project() throws ProjectDoesNotExistException {
 		// Given
-		Mockito.when(projectPersistService.voteForProject(projectName, vote))
+		Mockito.when(
+				projectPersistService
+						.voteForProject(projectName, vote, comment))
 				.thenReturn(true);
 
 		// When
-		service.vote(projectName, vote);
+		service.vote(projectName, vote, comment);
 
 		// Then
-		Mockito.verify(projectPersistService).voteForProject(projectName, vote);
+		Mockito.verify(projectPersistService).voteForProject(projectName, vote,
+				comment);
 	}
 
 	@Test(expected = ProjectDoesNotExistException.class)
 	public void vote_throws_exception_if_project_does_not_exist()
 			throws ProjectDoesNotExistException {
 		// Given
-		Mockito.when(projectPersistService.voteForProject(projectName, vote))
+		Mockito.when(
+				projectPersistService
+						.voteForProject(projectName, vote, comment))
 				.thenReturn(false);
 
 		// When
-		service.vote(projectName, vote);
+		service.vote(projectName, vote, comment);
 
 		// Then
 		// See @Test

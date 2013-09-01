@@ -10,7 +10,8 @@ public interface IProjectService {
 
 	String createProject(String name, String description, EmailData emailData);
 
-	void vote(String id, int vote) throws ProjectDoesNotExistException;
+	void vote(String id, int vote, String comment)
+			throws ProjectDoesNotExistException;
 
 	Project findProject(String id);
 

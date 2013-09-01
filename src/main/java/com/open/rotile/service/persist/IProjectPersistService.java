@@ -10,7 +10,7 @@ public interface IProjectPersistService {
 
 	void createProject(Project project);
 
-	boolean voteForProject(String id, final int vote);
+	boolean voteForProject(String id, final int vote, String comment);
 
 	public Project findProject(String id);
 

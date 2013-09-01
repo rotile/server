@@ -15,10 +15,6 @@ public class Vote {
 
 	}
 
-	public Vote(int vote) {
-		this.vote = vote;
-	}
-
 	public Vote(int vote, String comment) {
 		this.vote = vote;
 		this.comment = comment;

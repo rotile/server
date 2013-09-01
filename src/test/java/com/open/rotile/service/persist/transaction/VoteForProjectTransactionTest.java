@@ -14,13 +14,14 @@ public class VoteForProjectTransactionTest {
 	private final String projectName = "my project";
 	private final String projectDescription = "Project description.";
 	private final int vote = 3;
+	private final String comment = "vote comment";
 	private VoteForProjectTransaction transaction;
 
 	@Before
 	public void setUp() {
 		projectPersistService = Mockito.mock(IProjectPersistService.class);
 		transaction = new VoteForProjectTransaction(projectPersistService,
-				projectName, vote);
+				projectName, vote, comment);
 	}
 
 	@Test

@@ -18,17 +18,18 @@ public class ProjectTest {
 		// Then
 		Assertions.assertThat(project.votes.size()).isEqualTo(1);
 		Assertions.assertThat(project.votes.get(0).vote()).isEqualTo(voteValue);
-		Assertions.assertThat(project.votes.get(0).comment()).isEqualTo(comment);
+		Assertions.assertThat(project.votes.get(0).comment())
+				.isEqualTo(comment);
 	}
 
 	@Test
 	public void nbvotes_returns_number_of_votes() {
 		// Given
 		Project project = new Project();
-		project.vote(2);
-		project.vote(4);
-		project.vote(6);
-		project.vote(8);
+		project.vote(2, null);
+		project.vote(4, null);
+		project.vote(6, null);
+		project.vote(8, null);
 		final int expectedNbVotes = 4;
 
 		// When
@@ -42,10 +43,10 @@ public class ProjectTest {
 	public void average_returns_votes_average() {
 		// Given
 		Project project = new Project();
-		project.vote(2);
-		project.vote(4);
-		project.vote(6);
-		project.vote(8);
+		project.vote(2, null);
+		project.vote(4, null);
+		project.vote(6, null);
+		project.vote(8, null);
 		final int expectedAverage = 5;
 
 		// When

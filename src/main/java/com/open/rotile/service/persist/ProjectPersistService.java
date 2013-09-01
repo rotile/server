@@ -21,8 +21,8 @@ public class ProjectPersistService implements IProjectPersistService {
 	}
 
 	@Override
-	public boolean voteForProject(String id, final int vote) {
-		return ofy().transact(new VoteForProjectTransaction(this, id, vote));
+	public boolean voteForProject(String id, final int vote, String comment) {
+		return ofy().transact(new VoteForProjectTransaction(this, id, vote, comment));
 	}
 
 	@Override

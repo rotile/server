@@ -21,7 +21,8 @@ public class ProjectService implements IProjectService {
 	}
 
 	@Override
-	public String createProject(String name, String description, EmailData emailData) {
+	public String createProject(String name, String description,
+			EmailData emailData) {
 		Project project = new Project(name, description);
 		projectPersistService.createProject(project);
 		if (emailData.hasEmail()) {
@@ -31,8 +32,9 @@ public class ProjectService implements IProjectService {
 	}
 
 	@Override
-	public void vote(String id, int vote) throws ProjectDoesNotExistException {
-		boolean voted = projectPersistService.voteForProject(id, vote);
+	public void vote(String id, int vote, String comment)
+			throws ProjectDoesNotExistException {
+		boolean voted = projectPersistService.voteForProject(id, vote, comment);
 		if (voted == false) {
 			throw new ProjectDoesNotExistException();
 		}

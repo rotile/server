@@ -21,6 +21,7 @@ import com.open.rotile.model.Project;
 import com.open.rotile.server.model.EmailData;
 import com.open.rotile.server.viewmodel.ProjectCreationData;
 import com.open.rotile.server.viewmodel.ProjectView;
+import com.open.rotile.server.viewmodel.VoteView;
 import com.open.rotile.service.IProjectService;
 
 @Path("/projects")
@@ -64,11 +65,23 @@ public class ProjectRestService {
 		return new ProjectView(project);
 	}
 
+	// TODO: remove me!
 	@POST
 	@Path("/{id}/{vote}")
 	public Response vote(@PathParam("id") String id, @PathParam("vote") int vote) {
 		try {
-			projectService.vote(id, vote);
+			projectService.vote(id, vote, null);
+			return Response.ok().build();
+		} catch (ProjectDoesNotExistException e) {
+			return Response.serverError().build();
+		}
+	}
+
+	@POST
+	@Path("/{id}")
+	public Response vote(@PathParam("id") String id, VoteView vote) {
+		try {
+			projectService.vote(id, vote.vote(), vote.comment());
 			return Response.ok().build();
 		} catch (ProjectDoesNotExistException e) {
 			return Response.serverError().build();

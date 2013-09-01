@@ -47,10 +47,6 @@ public class Project {
 		votes.add(new Vote(vote, comment));
 	}
 
-	public void vote(int vote) {
-		votes.add(new Vote(vote));
-	}
-
 	public int nbVotes() {
 		return votes.size();
 	}
