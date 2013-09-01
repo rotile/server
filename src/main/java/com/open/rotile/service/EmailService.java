@@ -15,7 +15,10 @@ import com.open.rotile.server.model.EmailData;
 
 public class EmailService implements IEmailService {
 
-	@Override
+    public static final String SENDER_EMAIL = "rotile.open@gmail.com";
+    public static final String SENDER_NAME = "Rotile";
+
+    @Override
 	public void sendCreationEmail(EmailData emailData, Project project) {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
@@ -23,7 +26,7 @@ public class EmailService implements IEmailService {
 		try {
 			String msgBody = buildMessageBody(emailData, project);
 			Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress("noreply@rotile.com", "Rotile"));
+			msg.setFrom(new InternetAddress(SENDER_EMAIL, SENDER_NAME));
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					emailData.email()));
 			msg.setSubject("Project " + project.name() + " creation");
