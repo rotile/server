@@ -7,8 +7,8 @@ public class VoteView {
 	private int vote;
 	private String comment;
 
-	public VoteView(int vote) {
-		this.vote = vote;
+	public VoteView() {
+
 	}
 
 	public VoteView(int vote, String comment) {
