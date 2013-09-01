@@ -43,6 +43,10 @@ public class Project {
 		return description;
 	}
 
+	public void vote(int vote, String comment) {
+		votes.add(new Vote(vote, comment));
+	}
+
 	public void vote(int vote) {
 		votes.add(new Vote(vote));
 	}

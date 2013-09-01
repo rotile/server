@@ -9,14 +9,16 @@ public class ProjectTest {
 	public void vote_adds_new_vote() {
 		// Given
 		final int voteValue = 4;
+		final String comment = "comment";
 		Project project = new Project();
 
 		// When
-		project.vote(voteValue);
+		project.vote(voteValue, comment);
 
 		// Then
 		Assertions.assertThat(project.votes.size()).isEqualTo(1);
 		Assertions.assertThat(project.votes.get(0).vote()).isEqualTo(voteValue);
+		Assertions.assertThat(project.votes.get(0).comment()).isEqualTo(comment);
 	}
 
 	@Test

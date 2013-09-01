@@ -9,22 +9,31 @@ public class Vote {
 	@Id
 	private Long id;
 	private int vote;
-	
+	private String comment;
+
 	public Vote() {
-		
+
 	}
 
 	public Vote(int vote) {
 		this.vote = vote;
 	}
 
+	public Vote(int vote, String comment) {
+		this.vote = vote;
+		this.comment = comment;
+	}
+
 	public int vote() {
 		return this.vote;
+	}
+
+	public String comment() {
+		return comment;
 	}
 
 	@Override
 	public String toString() {
 		return String.valueOf(vote);
 	}
-
 }
