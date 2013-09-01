@@ -1,13 +1,10 @@
 package com.open.rotile.model;
 
 import com.googlecode.objectify.annotation.Embed;
-import com.googlecode.objectify.annotation.Id;
 
 @Embed
 public class Vote {
 
-	@Id
-	private Long id;
 	private int vote;
 	private String comment;
 
